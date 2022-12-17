@@ -13,21 +13,21 @@ class App extends React.Component {
                 price: 77777,
                 title: 'Phone',
                 qty: 1,
-                img: '',
+                img: 'https://www.91-img.com/gallery_images_uploads/f/c/fcf35da7857e7c95d02f03ef5f1f6749261e9662.JPG?tr=h-550,w-0,c-at_max',
                 id: 1
             },
             {
                 price: 777,
                 title: 'HeadPhone',
                 qty: 1,
-                img: '',
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-Yjgt_hjd8idhYNbBscc7c0DV-GCYzMrTMU1PXa1R&s',
                 id: 2
             },
             {
                 price: 399999,
                 title: 'Laptop',
                 qty: 1,
-                img: '',
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUSvTp-9oeUOd6rbO0j7nTYraN5gsu_dSxPK_4SnHdzg&s',
                 id: 3
             }
         ]
@@ -96,6 +96,7 @@ getCartCount = () => {
       onDecreaseQuantity = {this.handleDecreaseQuantity}
       onDeleteProduct = {this.handleDeleteProduct}
       />
+     
     </div>
   );
   }
