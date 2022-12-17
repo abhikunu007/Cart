@@ -55,7 +55,7 @@ class Cart extends React.Component {
         products[index].qty -= 1;
 
         this.setState({
-            products
+            products: products
         })
     }
 
