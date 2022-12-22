@@ -2,7 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { initializeApp } from "firebase/app";
+import 'firebase/firestore';
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBvEnnweuBwV-FSTYZu_JPffRPwQqCQ82M",
+  authDomain: "cart-179df.firebaseapp.com",
+  projectId: "cart-179df",
+  storageBucket: "cart-179df.appspot.com",
+  messagingSenderId: "637289364715",
+  appId: "1:637289364715:web:5a1d95a21999abb80c52ae"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
