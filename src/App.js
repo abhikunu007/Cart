@@ -39,14 +39,36 @@ class App extends React.Component {
         //     }
         // ]
     }
+    this.db = firebase.firestore()
 }
 
 componentDidMount() {
+  // firebase
+  // .firestore()
+  // .collection('products')
+  // .get()
+  // .then((snapshot) => {
+  //   console.log(snapshot);
+
+  //   snapshot.docs.map((doc) => {
+  //     console.log(doc.data())
+  //   });
+
+  //   const products = snapshot.docs.map((doc) => {
+  //     const data = doc.data();
+  //     data['id'] = doc.id;
+  //     return data;
+  //   });
+  //   this.setState({
+  //     products: products,
+  //     loading: false
+  //   })
+  // });
+
   firebase
   .firestore()
   .collection('products')
-  .get()
-  .then((snapshot) => {
+  .onSnapshot((snapshot) => {
     console.log(snapshot);
 
     snapshot.docs.map((doc) => {
@@ -69,11 +91,23 @@ handleIncreaseQuantity = (product) => {
     const {products} = this.state;
     const index = products.indexOf(product);
 
-    products[index].qty += 1;
+    // products[index].qty += 1;
 
-    this.setState({
-        products: products
-    })
+    // this.setState({
+    //     products: products
+    // })
+    const docRef = this.db.collection('products').doc(products[index].id);
+
+    docRef
+      .update({
+        qty: products[index].qty + 1
+       })
+       .then(() => {
+        console.log('Updated successfully')
+       })
+       .catch((error) => {
+        console.log('Error:', error)
+       })
 }
 
 handleDecreaseQuantity = (product) => {
@@ -124,13 +158,29 @@ getCartTotal = () => {
   return cartTotal;
 }
 
-
+addProduct = () => {
+ this.db
+    .collection('products')
+    .add({
+      img: '',
+      price: 699,
+      qty: 3,
+      title: 'watch'
+    })
+    .then((docRef) => {
+      console.log('Products has been added', docRef);
+    })
+    .catch((error) => {
+      console.log('Error:', error);
+    })
+}
 
   render() {
     const {products, loading} = this.state;
   return (
     <div className="App">
       <Navbar count={this.getCartCount()}/>
+      <button onClick={this.addProduct} style={{padding: 20, fontSize: 20}}>Add a product</button>
       <h1 id="name">CART</h1>
       <Cart
       products = {products}
